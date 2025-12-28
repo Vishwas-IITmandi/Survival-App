@@ -10,7 +10,11 @@ import {
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
+  Keyboard,
+  LayoutAnimation,
+  UIManager,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { initLlama, releaseAllLlama } from 'llama.rn';
 import { Message, Model } from '../types';
 import RNFS from 'react-native-fs';
@@ -26,6 +30,11 @@ const INITIAL_CONVERSATION: Message[] = [
   },
 ];
 
+// Enable LayoutAnimation on Android
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
 export default function ChatScreen({ selectedModel }: ChatScreenProps) {
   const [context, setContext] = useState<any>(null);
   const [conversation, setConversation] = useState<Message[]>(INITIAL_CONVERSATION);
@@ -34,6 +43,27 @@ export default function ChatScreen({ selectedModel }: ChatScreenProps) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
   const scrollViewRef = useRef<ScrollView>(null);
+
+  // Smooth keyboard animations
+  useEffect(() => {
+    const keyboardWillShow = Keyboard.addListener(
+      Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow',
+      () => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      }
+    );
+    const keyboardWillHide = Keyboard.addListener(
+      Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide',
+      () => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      }
+    );
+
+    return () => {
+      keyboardWillShow.remove();
+      keyboardWillHide.remove();
+    };
+  }, []);
 
   useEffect(() => {
     if (selectedModel) {
@@ -201,39 +231,57 @@ export default function ChatScreen({ selectedModel }: ChatScreenProps) {
         ]}
       >
         <Text style={styles.messageRole}>
-          {message.role === 'user' ? 'You' : 'Assistant'}
+          {message.role === 'user' ? 'You' : 'Survival Guide'}
         </Text>
         <Text style={styles.messageContent}>{message.content}</Text>
       </View>
     );
   };
 
+  const renderTypingIndicator = () => {
+    if (!isGenerating || conversation[conversation.length - 1]?.content) return null;
+    
+    return (
+      <View style={[styles.messageBubble, styles.assistantBubble, styles.typingBubble]}>
+        <Text style={styles.messageRole}>Survival Guide</Text>
+        <View style={styles.typingIndicator}>
+          <Text style={styles.typingDot}>•</Text>
+          <Text style={[styles.typingDot, styles.typingDotDelay1]}>•</Text>
+          <Text style={[styles.typingDot, styles.typingDotDelay2]}>•</Text>
+        </View>
+      </View>
+    );
+  };
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <KeyboardAvoidingView
         style={styles.keyboardAvoid}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={100}
+        keyboardVerticalOffset={0}
       >
+        <View style={styles.header}>
+          <Text style={styles.title}>Survival Guide Chat</Text>
+          {selectedModel && (
+            <Text style={styles.modelInfo}>Model: {selectedModel.name}</Text>
+          )}
+        </View>
+
         <ScrollView
           ref={scrollViewRef}
           style={styles.scrollView}
+          contentContainerStyle={styles.scrollViewContent}
           onScroll={handleScroll}
           scrollEventThrottle={16}
+          keyboardShouldPersistTaps="handled"
         >
-          <View style={styles.header}>
-            <Text style={styles.title}>Survival Guide Chat</Text>
-            {selectedModel && (
-              <Text style={styles.modelInfo}>Model: {selectedModel.name}</Text>
-            )}
-          </View>
-
           {conversation.map((msg, idx) => renderMessage(msg, idx))}
+          {renderTypingIndicator()}
 
-          {isLoading && (
+          {isLoading && !isGenerating && (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="small" color="#FF4500" />
-              <Text style={styles.loadingText}>Thinking...</Text>
+              <Text style={styles.loadingText}>Loading model...</Text>
             </View>
           )}
         </ScrollView>
@@ -262,7 +310,7 @@ export default function ChatScreen({ selectedModel }: ChatScreenProps) {
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -276,10 +324,16 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
+  },
+  scrollViewContent: {
     padding: 16,
   },
   header: {
-    marginBottom: 20,
+    paddingHorizontal: 16,
+    paddingTop: 8,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#1a1a1a',
   },
   title: {
     color: '#FFFFFF',
@@ -292,20 +346,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   messageBubble: {
-    marginVertical: 8,
-    padding: 12,
-    borderRadius: 12,
-    maxWidth: '85%',
+    marginVertical: 6,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 16,
+    maxWidth: '80%',
   },
   userBubble: {
     alignSelf: 'flex-end',
     backgroundColor: '#FF4500',
+    borderBottomRightRadius: 4,
   },
   assistantBubble: {
     alignSelf: 'flex-start',
     backgroundColor: '#1a1a1a',
     borderWidth: 1,
     borderColor: '#333',
+    borderBottomLeftRadius: 4,
   },
   messageRole: {
     color: '#FFFFFF',
@@ -328,6 +385,26 @@ const styles = StyleSheet.create({
     color: '#666',
     marginLeft: 8,
     fontSize: 14,
+  },
+  typingBubble: {
+    paddingVertical: 16,
+  },
+  typingIndicator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  typingDot: {
+    color: '#FF4500',
+    fontSize: 20,
+    lineHeight: 20,
+    opacity: 0.4,
+  },
+  typingDotDelay1: {
+    opacity: 0.6,
+  },
+  typingDotDelay2: {
+    opacity: 0.8,
   },
   inputContainer: {
     flexDirection: 'row',

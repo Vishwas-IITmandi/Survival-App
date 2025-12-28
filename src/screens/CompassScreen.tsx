@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimensions, StatusBar, Text, View, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { CompassDial } from '../components/CompassDial';
 import { DataRow } from '../components/DataRow';
 import { useCompass, getDirection } from '../hooks/useCompass';
@@ -13,7 +14,7 @@ export default function CompassScreen() {
   const { magnetometer, location } = useCompass();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
       <StatusBar barStyle="light-content" backgroundColor="#000" />
       
       <View style={styles.header}>
@@ -34,7 +35,7 @@ export default function CompassScreen() {
         <DataRow label="EL" value={location?.coords.longitude} type="long" />
         <DataRow label="Elevation" value={location?.coords.altitude} unit="m" />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -44,10 +45,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 60,
+    paddingTop: 20,
+    paddingBottom: 16,
   },
   header: {
     alignItems: 'center',
+    paddingVertical: 16,
   },
   degreeText: {
     color: '#FFFFFF',
@@ -58,5 +61,6 @@ const styles = StyleSheet.create({
   footer: {
     width: '100%',
     paddingHorizontal: 40,
+    paddingBottom: 8,
   },
 });

@@ -59,7 +59,7 @@ export default function TabNavigator() {
           ),
         }}
       >
-        {() => <ModelScreen onModelSelected={handleModelSelected} />}
+        {() => <ModelScreen onModelSelected={handleModelSelected} selectedModel={selectedModel} />}
       </Tab.Screen>
     </Tab.Navigator>
   );

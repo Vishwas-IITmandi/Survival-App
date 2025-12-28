@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ProgressBar from '../components/ProgressBar';
 import { downloadModel, checkModelExists } from '../api/model';
 import { Model } from '../types';
@@ -26,9 +27,10 @@ const MODELS: Model[] = [
 interface ModelCardProps {
   model: Model;
   onModelSelected: (model: Model) => void;
+  isActive: boolean;
 }
 
-const ModelCard: React.FC<ModelCardProps> = ({ model, onModelSelected }) => {
+const ModelCard: React.FC<ModelCardProps> = ({ model, onModelSelected, isActive }) => {
   const [progress, setProgress] = React.useState(0);
   const [isDownloading, setIsDownloading] = React.useState(false);
   const [isDownloaded, setIsDownloaded] = React.useState(false);
@@ -76,7 +78,10 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onModelSelected }) => {
 
   return (
     <TouchableOpacity
-      style={[styles.modelCard, isDownloaded && styles.modelCardDownloaded]}
+      style={[
+        styles.modelCard,
+        isActive && styles.modelCardActive,
+      ]}
       onPress={handleDownload}
       disabled={isDownloading}
     >
@@ -101,11 +106,12 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, onModelSelected }) => {
 
 interface ModelScreenProps {
   onModelSelected: (model: Model) => void;
+  selectedModel: Model | null;
 }
 
-export default function ModelScreen({ onModelSelected }: ModelScreenProps) {
+export default function ModelScreen({ onModelSelected, selectedModel }: ModelScreenProps) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <View style={styles.header}>
         <Text style={styles.title}>Model Selection</Text>
         <Text style={styles.subtitle}>Choose a model to download</Text>
@@ -113,10 +119,15 @@ export default function ModelScreen({ onModelSelected }: ModelScreenProps) {
 
       <View style={styles.modelList}>
         {MODELS.map((model) => (
-          <ModelCard key={model.id} model={model} onModelSelected={onModelSelected} />
+          <ModelCard
+            key={model.id}
+            model={model}
+            onModelSelected={onModelSelected}
+            isActive={selectedModel?.id === model.id}
+          />
         ))}
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -127,6 +138,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   header: {
+    marginTop: 8,
     marginBottom: 30,
   },
   title: {
@@ -149,8 +161,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#333',
   },
-  modelCardDownloaded: {
+  modelCardActive: {
     borderColor: '#4CAF50',
+    borderWidth: 2,
   },
   modelHeader: {
     flexDirection: 'row',
