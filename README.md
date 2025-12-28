@@ -1,4 +1,39 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Survival Guide
+
+A React Native CLI mobile application for on-device LLM inference using llama.cpp bindings. Features a compass, chat interface, and local model management.
+
+## 🚀 Features
+
+- **Compass**: Real-time magnetic compass with location tracking
+- **Chat**: Conversational AI powered by local LLM models
+- **Model Management**: Download and manage Qwen GGUF models from Hugging Face
+
+## 📋 Requirements
+
+- Node.js >= 20
+- React Native CLI
+- Android Studio / Xcode
+- Android emulator or physical device
+
+## 🛠️ Setup
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. iOS Setup (if targeting iOS)
+
+```bash
+cd ios
+pod install
+cd ..
+```
+
+### 3. Android Setup
+
+Ensure you have Android SDK installed and an emulator running or device connected.
 
 # Getting Started
 

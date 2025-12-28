@@ -1,0 +1,1 @@
+C:\workspace\projects\survival\android\app\build\intermediates\cxx\Debug\6l703c29\obj\x86_64

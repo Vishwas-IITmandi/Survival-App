@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "RNLlamaSpec_autolinked_build",
+		"source" : "C:/workspace/projects/survival/node_modules/llama.rn/android/build/generated/source/codegen/jni"
+	}
+}
