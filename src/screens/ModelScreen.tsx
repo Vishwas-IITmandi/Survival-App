@@ -1,28 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ProgressBar from '../components/ProgressBar';
 import { downloadModel, checkModelExists } from '../api/model';
 import { Model } from '../types';
-
-const MODELS: Model[] = [
-  {
-    id: 'qwen-0.5b',
-    name: 'Qwen 0.5B',
-    repo: 'Qwen/Qwen2.5-0.5B-Instruct-GGUF',
-    filename: 'qwen2.5-0.5b-instruct-q4_k_m.gguf',
-    size: '~350MB',
-    downloadUrl: 'https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf',
-  },
-  {
-    id: 'qwen-1.5b',
-    name: 'Qwen 1.5B',
-    repo: 'Qwen/Qwen2.5-1.5B-Instruct-GGUF',
-    filename: 'qwen2.5-1.5b-instruct-q4_k_m.gguf',
-    size: '~950MB',
-    downloadUrl: 'https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/resolve/main/qwen2.5-1.5b-instruct-q4_k_m.gguf',
-  },
-];
+import { MODELS } from '../config/models';
+import { modelScreenStyles as styles } from '../styles/modelScreenStyles';
 
 interface ModelCardProps {
   model: Model;
@@ -130,71 +113,3 @@ export default function ModelScreen({ onModelSelected, selectedModel }: ModelScr
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    padding: 20,
-  },
-  header: {
-    marginTop: 8,
-    marginBottom: 30,
-  },
-  title: {
-    color: '#FFFFFF',
-    fontSize: 32,
-    fontWeight: '200',
-    marginBottom: 8,
-  },
-  subtitle: {
-    color: '#666',
-    fontSize: 16,
-  },
-  modelList: {
-    gap: 16,
-  },
-  modelCard: {
-    backgroundColor: '#1a1a1a',
-    padding: 20,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#333',
-  },
-  modelCardActive: {
-    borderColor: '#4CAF50',
-    borderWidth: 2,
-  },
-  modelHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  modelName: {
-    color: '#FFFFFF',
-    fontSize: 20,
-    fontWeight: '600',
-  },
-  modelSize: {
-    color: '#666',
-    fontSize: 14,
-    fontFamily: 'monospace',
-  },
-  modelRepo: {
-    color: '#888',
-    fontSize: 12,
-    marginBottom: 12,
-  },
-  downloadedText: {
-    color: '#4CAF50',
-    fontSize: 14,
-    fontWeight: '600',
-    marginTop: 8,
-  },
-  downloadPrompt: {
-    color: '#FF4500',
-    fontSize: 14,
-    marginTop: 8,
-  },
-});

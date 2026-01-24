@@ -1,9 +1,10 @@
 import React from 'react';
-import { Dimensions, StatusBar, Text, View, StyleSheet } from 'react-native';
+import { Dimensions, StatusBar, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { CompassDial } from '../components/CompassDial';
 import { DataRow } from '../components/DataRow';
 import { useCompass, getDirection } from '../hooks/useCompass';
+import { compassScreenStyles as styles } from '../styles/compassScreenStyles';
 
 const { width } = Dimensions.get('window');
 const DIAL_WIDTH = width - 40;
@@ -38,29 +39,3 @@ export default function CompassScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingTop: 20,
-    paddingBottom: 16,
-  },
-  header: {
-    alignItems: 'center',
-    paddingVertical: 16,
-  },
-  degreeText: {
-    color: '#FFFFFF',
-    fontSize: 56,
-    fontWeight: '200',
-    fontVariant: ['tabular-nums'],
-  },
-  footer: {
-    width: '100%',
-    paddingHorizontal: 40,
-    paddingBottom: 8,
-  },
-});

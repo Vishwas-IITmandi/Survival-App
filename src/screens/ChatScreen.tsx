@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  StyleSheet,
   Alert,
   KeyboardAvoidingView,
   Platform,
@@ -18,6 +17,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { initLlama, releaseAllLlama } from 'llama.rn';
 import { Message, Model } from '../types';
 import RNFS from 'react-native-fs';
+import { chatScreenStyles as styles } from '../styles/chatScreenStyles';
+import { colors } from '../styles/globalStyles';
 
 interface ChatScreenProps {
   selectedModel: Model | null;
@@ -80,7 +81,7 @@ export default function ChatScreen({ selectedModel }: ChatScreenProps) {
     try {
       const destPath = `${RNFS.DocumentDirectoryPath}/${model.filename}`;
       const fileExists = await RNFS.exists(destPath);
-      
+
       if (!fileExists) {
         Alert.alert('Model Not Found', 'Please download the model first from the Models tab.');
         return;
@@ -98,7 +99,7 @@ export default function ChatScreen({ selectedModel }: ChatScreenProps) {
         n_ctx: 2048,
         n_gpu_layers: 1,
       });
-      
+
       setContext(llamaContext);
       console.log('Model loaded successfully:', model.name);
     } catch (error) {
@@ -221,29 +222,33 @@ export default function ChatScreen({ selectedModel }: ChatScreenProps) {
 
   const renderMessage = (message: Message, index: number) => {
     if (message.role === 'system') return null;
+    const isUser = message.role === 'user';
 
     return (
       <View
         key={index}
         style={[
           styles.messageBubble,
-          message.role === 'user' ? styles.userBubble : styles.assistantBubble,
+          isUser ? styles.userBubble : styles.assistantBubble,
         ]}
       >
-        <Text style={styles.messageRole}>
-          {message.role === 'user' ? 'You' : 'Survival Guide'}
+        <Text
+          style={[
+            styles.messageContent,
+            isUser ? styles.userMessageContent : styles.assistantMessageContent,
+          ]}
+        >
+          {message.content}
         </Text>
-        <Text style={styles.messageContent}>{message.content}</Text>
       </View>
     );
   };
 
   const renderTypingIndicator = () => {
     if (!isGenerating || conversation[conversation.length - 1]?.content) return null;
-    
+
     return (
       <View style={[styles.messageBubble, styles.assistantBubble, styles.typingBubble]}>
-        <Text style={styles.messageRole}>Survival Guide</Text>
         <View style={styles.typingIndicator}>
           <Text style={styles.typingDot}>•</Text>
           <Text style={[styles.typingDot, styles.typingDotDelay1]}>•</Text>
@@ -280,7 +285,7 @@ export default function ChatScreen({ selectedModel }: ChatScreenProps) {
 
           {isLoading && !isGenerating && (
             <View style={styles.loadingContainer}>
-              <ActivityIndicator size="small" color="#FF4500" />
+              <ActivityIndicator size="small" color={colors.primary} />
               <Text style={styles.loadingText}>Loading model...</Text>
             </View>
           )}
@@ -292,162 +297,29 @@ export default function ChatScreen({ selectedModel }: ChatScreenProps) {
               <Text style={styles.stopButtonText}>Stop</Text>
             </TouchableOpacity>
           )}
-          <TextInput
-            style={styles.input}
-            placeholder="Ask anything..."
-            placeholderTextColor="#666"
-            value={userInput}
-            onChangeText={setUserInput}
-            multiline
-            editable={!isGenerating}
-          />
-          <TouchableOpacity
-            style={[styles.sendButton, isGenerating && styles.sendButtonDisabled]}
-            onPress={handleSendMessage}
-            disabled={isGenerating}
-          >
-            <Text style={styles.sendButtonText}>Send</Text>
-          </TouchableOpacity>
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={styles.input}
+              placeholder="Ask anything..."
+              placeholderTextColor={colors.textTertiary}
+              value={userInput}
+              onChangeText={setUserInput}
+              multiline
+              editable={!isGenerating}
+            />
+            <TouchableOpacity
+              style={[
+                styles.sendButton,
+                (!userInput.trim() || isGenerating) && styles.sendButtonDisabled,
+              ]}
+              onPress={handleSendMessage}
+              disabled={isGenerating || !userInput.trim()}
+            >
+              <Text style={styles.sendButtonText}>↑</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-  },
-  keyboardAvoid: {
-    flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollViewContent: {
-    padding: 16,
-  },
-  header: {
-    paddingHorizontal: 16,
-    paddingTop: 8,
-    paddingBottom: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
-  },
-  title: {
-    color: '#FFFFFF',
-    fontSize: 28,
-    fontWeight: '200',
-    marginBottom: 4,
-  },
-  modelInfo: {
-    color: '#666',
-    fontSize: 14,
-  },
-  messageBubble: {
-    marginVertical: 6,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 16,
-    maxWidth: '80%',
-  },
-  userBubble: {
-    alignSelf: 'flex-end',
-    backgroundColor: '#FF4500',
-    borderBottomRightRadius: 4,
-  },
-  assistantBubble: {
-    alignSelf: 'flex-start',
-    backgroundColor: '#1a1a1a',
-    borderWidth: 1,
-    borderColor: '#333',
-    borderBottomLeftRadius: 4,
-  },
-  messageRole: {
-    color: '#FFFFFF',
-    fontSize: 12,
-    fontWeight: '600',
-    marginBottom: 4,
-    opacity: 0.7,
-  },
-  messageContent: {
-    color: '#FFFFFF',
-    fontSize: 15,
-    lineHeight: 22,
-  },
-  loadingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 12,
-  },
-  loadingText: {
-    color: '#666',
-    marginLeft: 8,
-    fontSize: 14,
-  },
-  typingBubble: {
-    paddingVertical: 16,
-  },
-  typingIndicator: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-  },
-  typingDot: {
-    color: '#FF4500',
-    fontSize: 20,
-    lineHeight: 20,
-    opacity: 0.4,
-  },
-  typingDotDelay1: {
-    opacity: 0.6,
-  },
-  typingDotDelay2: {
-    opacity: 0.8,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 12,
-    borderTopWidth: 1,
-    borderTopColor: '#333',
-    backgroundColor: '#000000',
-  },
-  input: {
-    flex: 1,
-    backgroundColor: '#1a1a1a',
-    color: '#FFFFFF',
-    borderRadius: 20,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    marginRight: 8,
-    maxHeight: 100,
-    borderWidth: 1,
-    borderColor: '#333',
-  },
-  sendButton: {
-    backgroundColor: '#FF4500',
-    borderRadius: 20,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-  },
-  sendButtonDisabled: {
-    backgroundColor: '#666',
-  },
-  sendButtonText: {
-    color: '#FFFFFF',
-    fontWeight: '600',
-  },
-  stopButton: {
-    backgroundColor: '#666',
-    borderRadius: 20,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    marginRight: 8,
-  },
-  stopButtonText: {
-    color: '#FFFFFF',
-    fontWeight: '600',
-  },
-});
