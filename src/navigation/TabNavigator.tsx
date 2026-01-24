@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/Ionicons';
 import CompassScreen from '../screens/CompassScreen';
 import ChatScreen from '../screens/ChatScreen';
 import ModelScreen from '../screens/ModelScreen';
 import { Model } from '../types';
+import { colors } from '../styles/globalStyles';
+import CompassIcon from '../assets/icons/CompassIcon';
+import ChatIcon from '../assets/icons/ChatIcon';
+import ModelsIcon from '../assets/icons/ModelsIcon';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,11 +22,11 @@ export default function TabNavigator() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#FF4500',
-        tabBarInactiveTintColor: '#666',
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.textTertiary,
         tabBarStyle: {
-          backgroundColor: '#000000',
-          borderTopColor: '#333',
+          backgroundColor: colors.surfaceDark,
+          borderTopColor: colors.border,
           borderTopWidth: 1,
         },
         tabBarLabelStyle: {
@@ -37,7 +40,7 @@ export default function TabNavigator() {
         component={CompassScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Icon name="compass-outline" size={size} color={color} />
+            <CompassIcon size={size} color={color} />
           ),
         }}
       />
@@ -45,7 +48,7 @@ export default function TabNavigator() {
         name="Chat"
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Icon name="chatbubble-outline" size={size} color={color} />
+            <ChatIcon size={size} color={color} />
           ),
         }}
       >
@@ -55,7 +58,7 @@ export default function TabNavigator() {
         name="Models"
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Icon name="cloud-download-outline" size={size} color={color} />
+            <ModelsIcon size={size} color={color} />
           ),
         }}
       >
