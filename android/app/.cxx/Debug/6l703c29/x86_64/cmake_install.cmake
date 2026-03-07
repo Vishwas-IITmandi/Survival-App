@@ -44,6 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+  include("C:/workspace/projects/survival/android/app/.cxx/Debug/6l703c29/x86_64/OPSQLiteSpec_autolinked_build/cmake_install.cmake")
   include("C:/workspace/projects/survival/android/app/.cxx/Debug/6l703c29/x86_64/RNCGeolocationSpec_autolinked_build/cmake_install.cmake")
   include("C:/workspace/projects/survival/android/app/.cxx/Debug/6l703c29/x86_64/RNLlamaSpec_autolinked_build/cmake_install.cmake")
   include("C:/workspace/projects/survival/android/app/.cxx/Debug/6l703c29/x86_64/safeareacontext_autolinked_build/cmake_install.cmake")

@@ -1,3 +1,4 @@
+C:\workspace\projects\survival\node_modules\@op-engineering\op-sqlite\android\build\generated\source\codegen\jni\CMakeLists.txt
 C:\workspace\projects\survival\node_modules\@react-native-community\geolocation\android\build\generated\source\codegen\jni\CMakeLists.txt
 C:\workspace\projects\survival\node_modules\llama.rn\android\build\generated\source\codegen\jni\CMakeLists.txt
 C:\workspace\projects\survival\node_modules\react-native-safe-area-context\android\src\main\jni\CMakeLists.txt

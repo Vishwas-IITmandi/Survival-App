@@ -1,3 +1,9 @@
+C:\workspace\projects\survival\android\app\.cxx\RelWithDebInfo\5l4k5u1l\arm64-v8a\OPSQLiteSpec_autolinked_build\CMakeFiles\react_codegen_OPSQLiteSpec.dir\OPSQLiteSpec-generated.cpp.o
+C:\workspace\projects\survival\android\app\.cxx\RelWithDebInfo\5l4k5u1l\arm64-v8a\OPSQLiteSpec_autolinked_build\CMakeFiles\react_codegen_OPSQLiteSpec.dir\react\renderer\components\OPSQLiteSpec\ComponentDescriptors.cpp.o
+C:\workspace\projects\survival\android\app\.cxx\RelWithDebInfo\5l4k5u1l\arm64-v8a\OPSQLiteSpec_autolinked_build\CMakeFiles\react_codegen_OPSQLiteSpec.dir\react\renderer\components\OPSQLiteSpec\EventEmitters.cpp.o
+C:\workspace\projects\survival\android\app\.cxx\RelWithDebInfo\5l4k5u1l\arm64-v8a\OPSQLiteSpec_autolinked_build\CMakeFiles\react_codegen_OPSQLiteSpec.dir\react\renderer\components\OPSQLiteSpec\Props.cpp.o
+C:\workspace\projects\survival\android\app\.cxx\RelWithDebInfo\5l4k5u1l\arm64-v8a\OPSQLiteSpec_autolinked_build\CMakeFiles\react_codegen_OPSQLiteSpec.dir\react\renderer\components\OPSQLiteSpec\ShadowNodes.cpp.o
+C:\workspace\projects\survival\android\app\.cxx\RelWithDebInfo\5l4k5u1l\arm64-v8a\OPSQLiteSpec_autolinked_build\CMakeFiles\react_codegen_OPSQLiteSpec.dir\react\renderer\components\OPSQLiteSpec\States.cpp.o
 C:\workspace\projects\survival\android\app\.cxx\RelWithDebInfo\5l4k5u1l\arm64-v8a\RNCGeolocationSpec_autolinked_build\CMakeFiles\react_codegen_RNCGeolocationSpec.dir\RNCGeolocationSpec-generated.cpp.o
 C:\workspace\projects\survival\android\app\.cxx\RelWithDebInfo\5l4k5u1l\arm64-v8a\RNCGeolocationSpec_autolinked_build\CMakeFiles\react_codegen_RNCGeolocationSpec.dir\react\renderer\components\RNCGeolocationSpec\ComponentDescriptors.cpp.o
 C:\workspace\projects\survival\android\app\.cxx\RelWithDebInfo\5l4k5u1l\arm64-v8a\RNCGeolocationSpec_autolinked_build\CMakeFiles\react_codegen_RNCGeolocationSpec.dir\react\renderer\components\RNCGeolocationSpec\EventEmitters.cpp.o

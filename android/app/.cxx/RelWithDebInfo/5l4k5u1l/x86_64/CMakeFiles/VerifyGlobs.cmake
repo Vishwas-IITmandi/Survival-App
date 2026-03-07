@@ -12,6 +12,30 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/x86_64/CMakeFiles/cmake.verify_globs")
 endif()
 
+# react_codegen_SRCS at C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni/OPSQLiteSpec-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni/react/renderer/components/OPSQLiteSpec/*.cpp")
+set(OLD_GLOB
+  "C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni/react/renderer/components/OPSQLiteSpec/ComponentDescriptors.cpp"
+  "C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni/react/renderer/components/OPSQLiteSpec/EventEmitters.cpp"
+  "C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni/react/renderer/components/OPSQLiteSpec/Props.cpp"
+  "C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni/react/renderer/components/OPSQLiteSpec/ShadowNodes.cpp"
+  "C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni/react/renderer/components/OPSQLiteSpec/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/x86_64/CMakeFiles/cmake.verify_globs")
+endif()
+
 # react_codegen_SRCS at C:/workspace/projects/survival/node_modules/@react-native-community/geolocation/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/workspace/projects/survival/node_modules/@react-native-community/geolocation/android/build/generated/source/codegen/jni/*.cpp")
 set(OLD_GLOB

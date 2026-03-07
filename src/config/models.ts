@@ -29,16 +29,14 @@ export const MODELS: Model[] = [
     size: '~950MB',
     downloadUrl: 'https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/resolve/main/qwen2.5-1.5b-instruct-q4_k_m.gguf',
   },
-  // Add more models here as needed
-  // Example:
-  // {
-  //   id: 'model-id',
-  //   name: 'Model Display Name',
-  //   repo: 'organization/repo-name',
-  //   filename: 'model-file.gguf',
-  //   size: '~XMB',
-  //   downloadUrl: 'https://huggingface.co/organization/repo-name/resolve/main/model-file.gguf',
-  // },
+  {
+  id: 'survival-qwen-1.5b',
+  name: 'Survival Qwen 1.5B',
+  repo: 'vishwas-iit-mandi/Survival-Qwen-1.5B-GGUF',
+  filename: 'Survival-Qwen-1.5B-Q4_K_M.gguf',
+  size: '~986MB',
+  downloadUrl: 'https://huggingface.co/vishwas-iit-mandi/Survival-Qwen-1.5B-GGUF/resolve/main/qwen2.5-1.5b-instruct.Q4_K_M.gguf',
+  },
 ];
 
 /**

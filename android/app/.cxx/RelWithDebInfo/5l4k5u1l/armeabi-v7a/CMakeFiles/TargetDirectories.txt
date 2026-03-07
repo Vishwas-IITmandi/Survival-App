@@ -1,6 +1,9 @@
 C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/armeabi-v7a/CMakeFiles/appmodules.dir
 C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/armeabi-v7a/CMakeFiles/edit_cache.dir
 C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/armeabi-v7a/OPSQLiteSpec_autolinked_build/CMakeFiles/react_codegen_OPSQLiteSpec.dir
+C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/armeabi-v7a/OPSQLiteSpec_autolinked_build/CMakeFiles/edit_cache.dir
+C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/armeabi-v7a/OPSQLiteSpec_autolinked_build/CMakeFiles/rebuild_cache.dir
 C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/armeabi-v7a/RNCGeolocationSpec_autolinked_build/CMakeFiles/react_codegen_RNCGeolocationSpec.dir
 C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/armeabi-v7a/RNCGeolocationSpec_autolinked_build/CMakeFiles/edit_cache.dir
 C:/workspace/projects/survival/android/app/.cxx/RelWithDebInfo/5l4k5u1l/armeabi-v7a/RNCGeolocationSpec_autolinked_build/CMakeFiles/rebuild_cache.dir

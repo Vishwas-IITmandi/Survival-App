@@ -1,0 +1,230 @@
+================================================================================
+                        SURVIVAL APP - PROJECT STRUCTURE
+================================================================================
+
+================================================================================
+                              VERSION INFORMATION
+================================================================================
+
+CORE FRAMEWORK
+--------------
+React Native             : 0.83.1
+React                    : 19.2.0
+Node.js (required)       : >=20
+
+DEPENDENCIES
+------------
+@react-native-community/geolocation  : ^3.4.0    (Location services)
+@react-native/new-app-screen         : 0.83.1    (New app template)
+@react-navigation/bottom-tabs        : ^7.2.2    (Bottom tab navigation)
+@react-navigation/native             : ^7.1.2    (Navigation core)
+axios                                : ^1.7.9    (HTTP client)
+llama.rn                             : ^0.5.0    (LLaMA model integration)
+react-native-fs                      : ^2.20.0   (File system access)
+react-native-safe-area-context       : ^5.5.2    (Safe area handling)
+react-native-screens                 : ^4.6.0    (Native screen components)
+react-native-sensors                 : ^7.3.6    (Device sensors - compass, accelerometer)
+react-native-svg                     : ^15.15.1  (SVG rendering)
+react-native-vector-icons            : ^10.2.0   (Icon library)
+
+DEV DEPENDENCIES
+----------------
+@babel/core                              : ^7.25.2   (Babel core)
+@babel/preset-env                        : ^7.25.3   (Babel preset)
+@babel/runtime                           : ^7.25.0   (Babel runtime)
+@react-native-community/cli              : 20.0.0    (React Native CLI)
+@react-native-community/cli-platform-android : 20.0.0 (Android CLI tools)
+@react-native-community/cli-platform-ios : 20.0.0    (iOS CLI tools)
+@react-native/babel-preset               : 0.83.1    (RN Babel preset)
+@react-native/eslint-config              : 0.83.1    (RN ESLint config)
+@react-native/metro-config               : 0.83.1    (Metro bundler config)
+@react-native/typescript-config          : 0.83.1    (TypeScript config)
+@types/jest                              : ^29.5.13  (Jest type definitions)
+@types/react                             : ^19.2.0   (React type definitions)
+@types/react-native-vector-icons         : ^6.4.18   (Icon types)
+@types/react-test-renderer               : ^19.1.0   (Test renderer types)
+eslint                                   : ^8.19.0   (Linting)
+jest                                     : ^29.6.3   (Testing framework)
+prettier                                 : 2.8.8     (Code formatting)
+react-test-renderer                      : 19.2.0    (React testing)
+typescript                               : ^5.8.3    (TypeScript compiler)
+
+
+================================================================================
+                              FOLDER STRUCTURE
+================================================================================
+
+survival/
+├── .bundle/                  # Ruby bundler configuration
+├── .git/                     # Git version control
+├── __tests__/                # Jest test files
+├── android/                  # Android native project
+├── ios/                      # iOS native project
+├── node_modules/             # NPM dependencies
+├── src/                      # Main source code
+│   ├── api/                  # API service layer
+│   ├── assets/               # Static assets (icons, images)
+│   │   └── icons/            # App icons
+│   ├── components/           # Reusable React components
+│   ├── config/               # App configuration files
+│   ├── hooks/                # Custom React hooks
+│   ├── navigation/           # Navigation configuration
+│   ├── screens/              # App screens/pages
+│   ├── styles/               # Styling and theme files
+│   └── types/                # TypeScript type definitions
+├── App.tsx                   # Root app component
+├── index.js                  # App entry point
+├── package.json              # NPM package configuration
+├── tsconfig.json             # TypeScript configuration
+├── babel.config.js           # Babel configuration
+├── metro.config.js           # Metro bundler configuration
+├── jest.config.js            # Jest test configuration
+├── Gemfile                   # Ruby dependencies (for iOS)
+├── app.json                  # App metadata
+└── README.md                 # Project documentation
+
+
+================================================================================
+                          FOLDER DESCRIPTIONS
+================================================================================
+
+ROOT LEVEL FOLDERS
+------------------
+
+android/
+    Purpose: Contains the Android native project files
+    Contents:
+      - app/           : Main Android application module
+      - gradle/        : Gradle wrapper files
+      - build.gradle   : Project-level Gradle build file
+      - settings.gradle: Gradle settings
+      - gradle.properties: Gradle configuration properties
+    Used for: Building and configuring the Android version of the app
+
+ios/
+    Purpose: Contains the iOS native project files
+    Contents:
+      - survival/          : Main iOS application folder
+      - survival.xcodeproj/: Xcode project file
+      - Podfile            : CocoaPods dependencies
+    Used for: Building and configuring the iOS version of the app
+
+__tests__/
+    Purpose: Contains Jest test files for unit and integration testing
+    Used for: Running automated tests via `npm test`
+
+
+SOURCE CODE (src/) FOLDERS
+--------------------------
+
+src/api/
+    Purpose: API service layer for external communications
+    Used for: Making HTTP requests, handling API responses, data fetching
+
+src/assets/
+    Purpose: Static assets used throughout the app
+    Contents:
+      - icons/         : Custom icon files
+    Used for: Storing images, icons, fonts, and other static resources
+
+src/components/
+    Purpose: Reusable React Native components
+    Contents:
+      - CompassDial.tsx  : Compass dial UI component
+      - DataRow.tsx      : Data display row component
+      - ProgressBar.tsx  : Progress indicator component
+    Used for: Building blocks that are shared across multiple screens
+
+src/config/
+    Purpose: Application configuration and constants
+    Used for: API endpoints, app settings, environment variables
+
+src/hooks/
+    Purpose: Custom React hooks
+    Used for: Shared stateful logic (sensors, location, etc.)
+
+src/navigation/
+    Purpose: Navigation configuration and routing
+    Used for: Defining app navigation structure, tab bar, stack navigators
+
+src/screens/
+    Purpose: Main app screens/pages
+    Contents:
+      - ChatScreen.tsx    : AI chat interface
+      - CompassScreen.tsx : Compass/navigation screen
+      - ModelScreen.tsx   : LLaMA model management screen
+    Used for: Top-level screen components that represent app pages
+
+src/styles/
+    Purpose: Styling and theming
+    Contents:
+      - globalStyles.ts       : Global/shared styles
+      - chatScreenStyles.ts   : Chat screen specific styles
+      - compassScreenStyles.ts: Compass screen specific styles
+      - modelScreenStyles.ts  : Model screen specific styles
+      - README.md             : Style documentation
+    Used for: Centralized styling, theme colors, typography
+
+src/types/
+    Purpose: TypeScript type definitions
+    Used for: Shared interfaces, types, and type utilities
+
+
+================================================================================
+                              KEY FILES
+================================================================================
+
+App.tsx
+    Description: Root component that sets up navigation and providers
+    Location: /survival/App.tsx
+
+index.js
+    Description: Entry point that registers the app with React Native
+    Location: /survival/index.js
+
+package.json
+    Description: NPM package config with dependencies and scripts
+    Scripts:
+      - npm run android  : Run on Android
+      - npm run ios      : Run on iOS
+      - npm run start    : Start Metro bundler
+      - npm run test     : Run tests
+      - npm run lint     : Run ESLint
+
+tsconfig.json
+    Description: TypeScript compiler configuration
+
+metro.config.js
+    Description: Metro bundler configuration for React Native
+
+babel.config.js
+    Description: Babel transpiler configuration
+
+
+================================================================================
+                              APP FEATURES
+================================================================================
+
+1. COMPASS/NAVIGATION
+   - Uses device sensors for compass functionality
+   - Displays heading and orientation data
+   - Components: CompassScreen, CompassDial
+
+2. AI CHAT
+   - LLaMA model integration for offline AI chat
+   - Chat interface with message history
+   - Components: ChatScreen
+
+3. MODEL MANAGEMENT
+   - Download and manage LLaMA models
+   - Progress tracking for downloads
+   - Components: ModelScreen, ProgressBar
+
+4. LOCATION SERVICES
+   - GPS location tracking via Geolocation API
+   - Used for survival/navigation features
+
+
+================================================================================
+                     Last Updated: 2026-01-25
+================================================================================

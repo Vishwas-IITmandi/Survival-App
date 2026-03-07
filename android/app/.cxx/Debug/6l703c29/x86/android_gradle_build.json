@@ -1,5 +1,6 @@
 {
   "buildFiles": [
+    "C:\\workspace\\projects\\survival\\node_modules\\@op-engineering\\op-sqlite\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
     "C:\\workspace\\projects\\survival\\node_modules\\@react-native-community\\geolocation\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
     "C:\\workspace\\projects\\survival\\node_modules\\llama.rn\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
     "C:\\workspace\\projects\\survival\\node_modules\\react-native-safe-area-context\\android\\src\\main\\jni\\CMakeLists.txt",
@@ -36,6 +37,11 @@
         "C:\\Users\\Vishwas\\.gradle\\caches\\9.0.0\\transforms\\f97a0c8835e876dfb08e8efd6d33fd2f\\transformed\\react-android-0.83.1-debug\\prefab\\modules\\jsi\\libs\\android.x86\\libjsi.so",
         "C:\\Users\\Vishwas\\.gradle\\caches\\9.0.0\\transforms\\f97a0c8835e876dfb08e8efd6d33fd2f\\transformed\\react-android-0.83.1-debug\\prefab\\modules\\reactnative\\libs\\android.x86\\libreactnative.so"
       ]
+    },
+    "react_codegen_OPSQLiteSpec::@1d2ceb4ab0c4d2e06808": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "react_codegen_OPSQLiteSpec"
     },
     "react_codegen_RNCGeolocationSpec::@1b959fcb56e23f7716ba": {
       "toolchain": "toolchain",

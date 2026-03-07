@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "OPSQLiteSpec_autolinked_build",
+		"source" : "C:/workspace/projects/survival/node_modules/@op-engineering/op-sqlite/android/build/generated/source/codegen/jni"
+	}
+}
